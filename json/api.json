@@ -1,118 +1,178 @@
 {
-    "swagger": "2.0",
-    "info": {
-        "title": "Coba API",
-        "description": "Dokumentasi API Testing Menggunakan Swagger Studi Kasus API Reqres",
-        "version": "1.0.0"
-    },
-    "host": "reqres.in",
-    "basePath": "/api",
-    "schemes": ["https", "http"],
-
-
-    "paths": {
-        "/colors": {
-            "get": {
-                "tags": [
-                    "Colors"
-                ],
-                "summary": "Ambil semua warna",
-                "prodecus": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success"
-                    }
-                }
-            }
-        },
-        "/users": {
-            "get": {
-                "tags": ["List Users"],
-                "summary": "Tampilkan semua user",
-                "prodecus": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": { "description": "Success" }
-                }
-            },
-            "post": {
-                "tags": ["Create New User"],
-                "summary": "Menambah User Baru",
-                "produces": ["application/json"],
-                "parameters": [{
-                    "in": "body",
-                    "name": "body",
-                    "description": "Inputkan nama dan pekerjaan user baru",
-                    "required": true
-                }],
-                "responses": { "201": { "description": "Berhasil Menambahkan User Baru" } }
-            },
-            "delete": {
-                "tags": ["Delete Users"],
-                "summary": "Hapus User Sesuai ID",
-                "produces": ["application/json"],
-                "parameters": [{
-                    "name": "ID User",
-                    "in": "path",
-                    "description": "ID of the user that needs to be deleted",
-                    "required": true,
-                    "type": "integer",
-                    "minimum": 1,
-                    "format": "int64"
-                }],
-                "responses": {
-                    "204": { "description": "No Content" },
-                    "400": { "description": "ID User tidak valid" },
-                    "404": { "description": "User tidak ditemukan" }
-                }
-            }
-        },
-        "/users/{ID}": {
-            "put": {
-                "tags": ["Update Users"],
-                "summary": "Updated user",
-                "description": "Update data user sesuai dengan ID",
-                "operationId": "updateUser",
-                "consumes": ["application/json"],
-                "produces": ["application/json", "application/xml"],
-                "parameters": [{
-                    "name": "ID",
-                    "in": "path",
-                    "description": "ID User yang ingin diupdate",
-                    "required": true,
-                    "type": "string"
-                }, {
-                    "in": "body",
-                    "name": "Data Update",
-                    "description": "Updated user",
-                    "required": true,
-                    "schema": { "$ref": "#/definitions/User" }
-                }],
-                "responses": {
-                    "200": { "description": "Berhasil Update User" },
-                    "404": { "description": "User tidak ditemukan" }
-                }
-            }
-        },
-
-        "/unknown": {
-            "get": {
-                "tags": ["LIST <RESOURCE>"],
-                "summary": "Menampilkan List Data",
-                "prodecus": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success"
-                    }
-                }
-            }
-        }
-
-
+  "swagger": "2.0",
+  "info": {
+    "title": "Dokumentasi API menggunakan Swagger",
+    "description": "API ini memandu pengguna dalam menggunakan Swagger untuk mendokumentasikan API secara efisien. Pengguna dapat belajar konfigurasi dasar, penjelasan endpoint, parameter, dan respons yang diharapkan. API menyediakan contoh penggunaan sebagai panduan awal. Disarankan untuk memahami konsep dasar Swagger dan merujuk ke dokumentasi resmi untuk kasus penggunaan kompleks. Dikembangkan oleh Therlu. Hubungi @therlu untuk informasi lebih lanjut.",
+    "version": "1.0.0"
+  },
+  "host": "crudcrud.com",
+  "basePath": "/api/6f29be3b158a473d97ce3f0b6015169a",
+  "schemes": [
+    "https"
+  ],
+  "tags": [
+    {
+      "name": "Hewan",
+      "description": "API untuk mengambil data hewan"
     }
+  ],
+  "paths": {
+    "/hewan": {
+      "get": {
+        "tags": [
+          "Hewan"
+        ],
+        "summary": "List Hewan",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "404": {
+            "description": "data not found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Hewan"
+        ],
+        "summary": "Menambahkan Hewan",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "successful add data"
+          },
+          "400": {
+            "description": "bad request"
+          }
+        },
+        "parameters": [
+          {
+            "name": "Hewan",
+            "required": true,
+            "in": "body",
+            "description": "menambahkan hewan",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nama": {
+                  "type": "string",
+                  "example": "Gajah"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/hewan/{id}": {
+      "put": {
+        "tags": [
+          "Hewan"
+        ],
+        "summary": "Edit Hewan",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "bad request"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "id hewan",
+            "type": "string",
+            "default": "653a1f142e0fb203e854177a"
+          },
+          {
+            "name": "Hewan",
+            "required": true,
+            "in": "body",
+            "description": "menambahkan hewan",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nama": {
+                  "type": "string",
+                  "example": "Gajah"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Hewan"
+        ],
+        "summary": "Lihat detail Hewan",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "bad request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "id hewan",
+            "type": "string",
+            "default": "653a1f142e0fb203e854177a"
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Hewan"
+        ],
+        "summary": "Hapus Hewan",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "bad request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "id hewan",
+            "type": "string",
+            "default": "653a1f142e0fb203e854177a"
+          }
+        ]
+      }
+    }
+  }
 }
